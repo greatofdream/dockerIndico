@@ -1,0 +1,12 @@
+.PHONY: all
+
+key:
+	curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+	sudo apt-key fingerprint 0EBFCD88
+addrepo:
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $$(lsb_release -cs) stable"
+install:
+	sudo apt-get install docker-ce docker-ce-cli containerd.io
+installcompose:
+	sudo curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$$(uname -s)-$$(uname -m)" -o /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
